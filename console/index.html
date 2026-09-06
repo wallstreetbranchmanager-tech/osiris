@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>OSIRIS // HORUS EYE</title>
+  <style>
+    :root { --bg:#07080a; --panel:#10141b; --line:#2a3340; --gold:#c9a227; --mute:#8b93a0; --ok:#7dffb3; }
+    * { box-sizing: border-box; }
+    body { margin:0; background:var(--bg); color:#e8edf5; font:13px/1.4 ui-sans-serif, system-ui; }
+    header { display:flex; justify-content:space-between; align-items:center; padding:10px 16px; border-bottom:1px solid var(--line); }
+    header b { letter-spacing:.18em; color:var(--gold); }
+    .grid { display:grid; grid-template-columns: 280px 1fr 320px; height:calc(100vh - 44px); }
+    aside, section { border-right:1px solid var(--line); padding:12px; overflow:auto; }
+    h2 { font-size:11px; letter-spacing:.16em; color:var(--mute); margin:0 0 10px; }
+    .obj { border:1px solid var(--line); padding:8px; margin:0 0 8px; background:var(--panel); }
+    .obj strong { display:block; }
+    .tag { color:var(--ok); font-size:10px; letter-spacing:.08em; }
+    .globe { height:55%; border:1px solid var(--line); background:
+      radial-gradient(circle at 50% 55%, #16324a 0%, #0a1018 62%);
+      display:flex; align-items:center; justify-content:center; color:var(--mute); text-align:center; }
+    .graph { height:45%; padding-top:10px; }
+    a { color:var(--gold); }
+  </style>
+</head>
+<body>
+  <header>
+    <b>OSIRIS / HORUS EYE</b>
+    <span>KA objects · public feeds · no person search</span>
+  </header>
+  <div class="grid">
+    <aside>
+      <h2>CASE / OBJECTS</h2>
+      <div class="obj"><strong>UAL482</strong><span class="tag">AIRCRAFT · LIVE</span><div>icao24 demo · OpenSky pattern</div></div>
+      <div class="obj"><strong>ISS (ZARYA)</strong><span class="tag">SAT · PROPAGATED</span><div>NORAD 25544 · CelesTrak</div></div>
+      <div class="obj"><strong>M7.1 — KAMCHATKA</strong><span class="tag">EVENT · USGS</span><div>seismic · last 24h window</div></div>
+      <div class="obj"><strong>PORT OF LB TANKER</strong><span class="tag">VESSEL · DELAYED</span><div>MMSI demo · AIS</div></div>
+    </aside>
+    <section>
+      <div class="globe">
+        HORUS EYE GLOBE SLOT<br />
+        Fork / embed pattern from<br />
+        <a href="https://github.com/bilawalsidhu/gods-eye-view">gods-eye-view</a>
+      </div>
+      <div class="graph">
+        <h2>LINK GRAPH (KA)</h2>
+        UAL482 —arriving→ KJFK —nearby→ 14 contacts —event→ weather cell<br />
+        ISS —overflies→ Ukraine AOI —document→ public TLE epoch
+      </div>
+    </section>
+    <aside>
+      <h2>THOTH</h2>
+      <p>Agent talks to KA objects only. No raw warehouse dump. No face tools.</p>
+      <h2>LINEAGE</h2>
+      <p>Every node stamped source + freshness. Simulated layers stay labeled simulated.</p>
+      <h2>REPO</h2>
+      <p>github.com/wallstreetbranchmanager-tech/osiris</p>
+    </aside>
+  </div>
+</body>
+</html>
