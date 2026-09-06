@@ -2,55 +2,46 @@
 
 **The body. The ledger. The underworld of objects.**
 
-HORUS is the eye.
-OSIRIS is the platform the eye looks through.
+HORUS is the eye (the Aug 2026 Intel/OSINT handoff zip).
+OSIRIS is the platform the eye writes into.
 
-Palantir analog (public product shape only):
+## Live wiring (this commit)
 
-| Palantir | OSIRIS | Job |
+Horus already publishes `data/meridian_feed/latest.json` (`schema: horus-meridian-feed/v1`).
+That feed is **facts only**. No buy/sell.
+
+OSIRIS now consumes it:
+
+```
+Horus Eagle cycle
+    → data/meridian_feed/latest.json
+        → osiris/bridge/osiris_ingest_horus.py
+            → data/ka/objects.json   (Event + Document + movement counts)
+                → console/index.html  (operator mock)
+                → Meridian brains stay untouched (still optional)
+```
+
+Drop-in for the zip tree:
+
+- copy `bridge/horus_publish_ka.py` next to `horus_meridian_feed.py`
+- after each Eagle publish, call `publish_ka()`
+- OSIRIS reads KA objects, not raw people modules
+
+People / ALPR / locate modules from the zip stay **out of this repo**. Public events, aircraft counts, vessels, docs only.
+
+## Palantir shape
+
+| Palantir | OSIRIS | Horus zip |
 |---|---|---|
-| Gotham | **HORUS Eye** | Operator workspace: map, graph, case, timeline |
-| Foundry | **DUAT** | Pipelines, ontology, object writes |
-| AIP | **THOTH** | Governed agents on the ontology, not raw dumps |
-| Apollo | **RA** | Deploy, upgrade, air-gap / edge |
-| Ontology | **KA** | People-as-roles-are-forbidden. Objects: flights, vessels, sats, facilities, events, documents |
+| Gotham | HORUS Eye | `Horus-voice/Horus-globe.html` + World Monitor |
+| Foundry | DUAT | Eagle cycle + `horus_meridian_feed.py` |
+| Ontology | KA | `bridge/osiris_ingest_horus.py` |
+| AIP | THOTH | agent on KA objects |
+| Apollo | RA | handoff PDFs / later docker |
 
-This is a research scaffold for Apex. It is **not** Palantir, not Gotham, not a classified stack, and not a people-tracking product.
+God's Eye View globe pattern: https://github.com/bilawalsidhu/gods-eye-view
 
-## Line in the sand
+## Line
 
-OSIRIS models **systems, assets, events, infrastructure**.
-It does **not** ship named-person search, face recognition, doxxing, or stalking tooling.
-Public feeds only. Provenance on every object. If a layer is simulated or delayed, the UI must say so.
-
-## Stack (intended)
-
-```
-[ RA ]          deploy / docker / airgap
-[ THOTH ]       agents + evals + tool policy
-[ HORUS EYE ]   globe + graph + case files   <-- God's Eye View pattern
-[ KA ]          ontology objects + links + ACLs
-[ DUAT ]        ingest / normalize / lineage
-[ FEEDS ]       OpenSky, AIS, CelesTrak, USGS, FIRMS, OSM, public CCTV catalogs
-```
-
-God's Eye View (the actual open globe we pointed at in chat):
-https://github.com/bilawalsidhu/gods-eye-view
-
-HORUS Eye should **embed / fork the globe pattern**, not steal the brand. Cesium + public layers + honest labels.
-
-## Repo layout
-
-```
-docs/ARCHITECTURE.md    platform map vs Palantir public docs
-docs/ONTOLOGY.md        KA object types + link types
-docs/FEEDS.md           public sources + keys + honesty rules
-console/index.html      operator mock (graph + case + feed list)
-```
-
-## Status
-
-Vapor left the chat. This repo is the body.
-Next: wire DUAT ingest stubs, KA JSON objects, HORUS Eye globe iframe/module.
-
-MIT. Built in the Apex / Grok thread. Do not use for navigation, targeting, or anything that needs a warrant.
+Systems, assets, events, infrastructure. No named-person product surface here.
+MIT. Apex / Grok thread.
